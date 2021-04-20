@@ -51,7 +51,6 @@ exports.productsManage = function (req, res) {
 								res.status(417).send({ Status: false, Message: "Some errors predicted, We are unable to get the products!", Error: error });
 							} else {
 								result = JSON.parse(JSON.stringify(result));
-								console.log(result);
 								var productQuery = [];
 								sheetData.map(obj => {
 									const proSchema = new productSchema({
@@ -67,7 +66,6 @@ exports.productsManage = function (req, res) {
 									const validatedSchema = proSchema.validateSync();
 									if (validatedSchema === undefined) {
 										const matchIndex = result.findIndex(objNew => objNew.productId === obj.Product_Id);
-										console.log(matchIndex);
 										if (matchIndex >= 0) {
 											productQuery.push({
 												updateOne: {
